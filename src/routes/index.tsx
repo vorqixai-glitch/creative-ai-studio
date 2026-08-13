@@ -91,9 +91,16 @@ const PRICING = [
   {
     name: "FREE",
     price: "$0",
-    per: "/mo",
-    features: ["3 projects", "Community support", "Basic templates"],
-    cta: "CHOOSE FREE",
+    per: "/mo forever",
+    features: [
+      "10 projects",
+      "500 agent runs / mo",
+      "All 7 agents unlocked",
+      "Full template library",
+      "1-click edge deploys",
+      "Community + email support",
+    ],
+    cta: "START FREE — NO CARD",
     highlight: false,
   },
   {
