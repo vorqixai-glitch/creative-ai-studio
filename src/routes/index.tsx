@@ -145,20 +145,7 @@ function Nav() {
             </a>
           ))}
         </div>
-        <div className="flex items-center gap-3">
-          <a
-            href="#"
-            className="hidden text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground sm:inline"
-          >
-            Sign in
-          </a>
-          <a
-            href="#"
-            className="nx-btn-primary inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary-foreground transition-transform hover:-translate-y-0.5"
-          >
-            Start building →
-          </a>
-        </div>
+        <NavAuthActions />
       </nav>
     </header>
   );
