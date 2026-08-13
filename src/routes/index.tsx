@@ -1,5 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+
+import { useAuth } from "@/hooks/useAuth";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -126,6 +128,43 @@ function Index() {
   );
 }
 
+function NavAuthActions() {
+  const { user, loading } = useAuth();
+
+  if (loading) return <div className="h-9 w-40" />;
+
+  if (user) {
+    return (
+      <div className="flex items-center gap-3">
+        <span className="hidden text-xs text-muted-foreground sm:inline">{user.email}</span>
+        <Link
+          to="/dashboard"
+          className="nx-btn-primary inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary-foreground transition-transform hover:-translate-y-0.5"
+        >
+          Dashboard →
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex items-center gap-3">
+      <Link
+        to="/auth"
+        className="hidden text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground sm:inline"
+      >
+        Sign in
+      </Link>
+      <Link
+        to="/auth"
+        className="nx-btn-primary inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary-foreground transition-transform hover:-translate-y-0.5"
+      >
+        Start building →
+      </Link>
+    </div>
+  );
+}
+
 function Nav() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
@@ -145,20 +184,7 @@ function Nav() {
             </a>
           ))}
         </div>
-        <div className="flex items-center gap-3">
-          <a
-            href="#"
-            className="hidden text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground sm:inline"
-          >
-            Sign in
-          </a>
-          <a
-            href="#"
-            className="nx-btn-primary inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary-foreground transition-transform hover:-translate-y-0.5"
-          >
-            Start building →
-          </a>
-        </div>
+        <NavAuthActions />
       </nav>
     </header>
   );
